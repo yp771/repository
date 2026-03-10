@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>丝路之旅 · 乌兹别克斯坦 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lapis: #1a2a4a;
+    --deep: #0d1929;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-pale: #f5e6c0;
+    --turquoise: #4a9b9b;
+    --turquoise-light: #7ecece;
+    --rust: #8b3a2a;
+    --cream: #f8f3e8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'Noto Serif SC', 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(60deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px),
+      repeating-linear-gradient(-60deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px),
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(201,168,76,0.02) 40px, rgba(201,168,76,0.02) 41px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(74,155,155,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 80% at 80% 80%, rgba(201,168,76,0.08) 0%, transparent 60%);
+  }
+  .arch {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 600px;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+    pointer-events: none;
+  }
+  .arch::before {
+    content: '';
+    position: absolute;
+    inset: 15px;
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+  }
+  .hero-ornament {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--turquoise-light);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(28px, 5vw, 56px);
+    font-weight: 400;
+    color: var(--gold-light);
+    line-height: 1.2;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: rgba(248,243,232,0.6);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-quote {
+    max-width: 560px;
+    margin: 0 auto 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(14px, 2vw, 18px);
+    color: rgba(248,243,232,0.5);
+    line-height: 1.8;
+    border-left: 2px solid rgba(201,168,76,0.4);
+    padding-left: 20px;
+    text-align: left;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-dates {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s 1.1s forwards;
+    position: relative;
+    z-index: 1;
+  }
+  .date-pill {
+    padding: 8px 24px;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-pale);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+  }
+  .date-pill::before, .date-pill::after {
+    content: '◆';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 6px;
+    color: var(--gold);
+  }
+  .date-pill::before { left: -8px; }
+  .date-pill::after { right: -8px; }
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 1.5s forwards;
+    z-index: 1;
+  }
+  .scroll-hint span { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+    animation: scrollPulse 2s 2s infinite;
+  }
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 40px;
+    margin: 60px 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(201,168,76,0.4), transparent); }
+  .divider-gem {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 12px rgba(201,168,76,0.5);
+  }
+  .divider-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  .city-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .city-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .city-number {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 64px;
+    line-height: 1;
+    color: rgba(201,168,76,0.12);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .city-info { flex: 1; }
+  .city-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(20px, 3vw, 32px);
+    color: var(--gold-light);
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .city-dates-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--turquoise-light);
+  }
+  .city-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(248,243,232,0.45);
+    line-height: 1.6;
+    margin-top: 12px;
+    max-width: 500px;
+  }
+  .days-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .day-card {
+    background: rgba(26,42,74,0.4);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-left: 3px solid rgba(201,168,76,0.3);
+    overflow: hidden;
+    transition: border-left-color 0.3s;
+    cursor: pointer;
+  }
+  .day-card:hover { border-left-color: var(--gold); }
+  .day-card:hover .day-header { background: rgba(201,168,76,0.08); }
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 24px;
+    transition: background 0.3s;
+  }
+  .day-date {
+    flex-shrink: 0;
+    text-align: center;
+    min-width: 60px;
+  }
+  .day-date .month { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--turquoise-light); }
+  .day-date .num { font-family: 'Cinzel Decorative', serif; font-size: 24px; color: var(--gold-light); line-height: 1; }
+  .day-date .weekday { font-size: 10px; color: rgba(248,243,232,0.35); }
+  .day-title-wrap { flex: 1; }
+  .day-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 2px;
+    letter-spacing: 0.5px;
+  }
+  .day-theme {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(248,243,232,0.4);
+  }
+  .day-toggle {
+    width: 20px; height: 20px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    color: var(--gold);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .day-card.open .day-toggle { transform: rotate(180deg); }
+  .day-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .day-card.open .day-body { max-height: 800px; }
+  .day-content {
+    padding: 0 24px 20px 104px;
+  }
+  .time-block {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 14px;
+  }
+  .time-block::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px; height: 6px;
+    background: var(--turquoise);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(74,155,155,0.6);
+  }
+  .time-block:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 2.5px;
+    top: 14px;
+    width: 1px;
+    height: calc(100% + 6px);
+    background: rgba(74,155,155,0.2);
+  }
+  .time-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--turquoise-light);
+    margin-bottom: 3px;
+  }
+  .time-text {
+    font-size: 14px;
+    color: rgba(248,243,232,0.8);
+    line-height: 1.6;
+  }
+  .time-text em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--gold-pale);
+  }
+  .transit-card {
+    max-width: 900px;
+    margin: 0 auto 8px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .transit-inner {
+    background: rgba(138,58,42,0.15);
+    border: 1px solid rgba(139,58,42,0.4);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .transit-icon { font-size: 18px; flex-shrink: 0; }
+  .transit-text { font-size: 13px; color: rgba(248,243,232,0.7); line-height: 1.5; }
+  .transit-text strong { color: var(--gold-pale); }
+  footer {
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-ornament {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 28px;
+    color: rgba(201,168,76,0.3);
+    letter-spacing: 8px;
+    margin-bottom: 16px;
+  }
+  .footer-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(248,243,232,0.3);
+    letter-spacing: 1px;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="arch"></div>
+  <p class="hero-ornament">塔什干 · 撒马尔罕 · 布哈拉</p>
+  <h1>乌兹别克斯坦</h1>
+  <p class="hero-subtitle">丝绸之路的幽灵与荣光</p>
+  <blockquote class="hero-quote">
+    撒马尔罕是一个穿着血迹斑斑珠宝的杀手情妇——她的美丽是真实的，她的代价是真实的，那些血迹也是真实的。
+  </blockquote>
+  <div class="hero-dates">
+    <div class="date-pill">2025年3月18日</div>
+    <div class="date-pill" style="color:rgba(248,243,232,0.3);border-color:rgba(201,168,76,0.15)">——</div>
+    <div class="date-pill">2025年3月31日</div>
+  </div>
+  <div class="scroll-hint">
+    <span>展开行程</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="divider fade-in">
+  <div class="divider-line"></div><div class="divider-gem"></div>
+  <span class="divider-label">启程</span>
+  <div class="divider-gem"></div><div class="divider-line"></div>
+</div>
+
+<div class="transit-card fade-in">
+  <div class="transit-inner">
+    <span class="transit-icon">✈</span>
+    <div class="transit-text">
+      <strong>3月18日（周二）</strong> &nbsp;14:30 长沙出发 → 乌鲁木齐转机 → 23:50 飞塔什干<br>
+      抵达当地时间 23:55（比北京时间晚3小时）· 深夜入住，不安排活动
+    </div>
+  </div>
+</div>
+
+<div class="divider fade-in">
+  <div class="divider-line"></div><div class="divider-gem"></div>
+  <span class="divider-label">第一站</span>
+  <div class="divider-gem"></div><div class="divider-line"></div>
+</div>
+
+<section class="city-section fade-in">
+  <div class="city-header">
+    <div class="city-number">Ⅰ</div>
+    <div class="city-info">
+      <h2 class="city-name">塔什干</h2>
+      <p class="city-dates-label">3月19日 — 3月21日 · 2夜</p>
+      <p class="city-desc">苏联的骨骼，伊斯兰的皮肤——两个帝国叠加在同一片土地上</p>
+    </div>
+  </div>
+  <div class="days-grid">
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">19</div><div class="weekday">周三</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">塔什干 · 第一天</div>
+          <div class="day-theme">老城、古兰经与巴扎</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">上午</div>
+          <div class="time-text"><em>乔尔苏巴扎（Chorsu Bazaar）</em> — 中亚最大圆顶市场，早上人气最盛，香料与干果的气味扑面而来</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">上午晚些</div>
+          <div class="time-text"><em>哈斯特伊玛目广场（Khast Imam）</em> — 伊斯兰宗教核心区，藏有世界现存最古老的《古兰经》抄本，约7世纪</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">下午</div>
+          <div class="time-text"><em>帖木儿博物馆</em> 或 <em>国家历史博物馆</em>（二选一）；帖木儿广场周边漫步</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">傍晚</div>
+          <div class="time-text">老城街巷漫步，适应时差与节奏</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">20</div><div class="weekday">周四</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">塔什干 · 第二天</div>
+          <div class="day-theme">苏联美学与当代城市</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">上午</div>
+          <div class="time-text"><em>塔什干地铁站打卡</em> — 中亚最古老的地铁，多站台保留精美苏联时期马赛克壁画（Kosmonavtlar站、Alisher Navoi站等）</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">上午晚些</div>
+          <div class="time-text"><em>纳沃伊歌剧院</em>外观；<em>独立广场</em></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">下午</div>
+          <div class="time-text">当代艺术区或小巷精品咖啡馆</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">晚上</div>
+          <div class="time-text">早睡，次日10:30有航班</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">21</div><div class="weekday">周五</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">塔什干 → 撒马尔罕</div>
+          <div class="day-theme">✈ 10:30 起飞 · 11:30 抵达</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">中午</div>
+          <div class="time-text">抵达撒马尔罕，入住市中心酒店，午饭</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">下午</div>
+          <div class="time-text"><em>古尔·埃米尔陵（Gur-e-Amir）</em> — 帖木儿之墓，玉石棺椁据说是世界最大，适合初见热身</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">黄昏</div>
+          <div class="time-text"><em>雷吉斯坦广场</em>初见 — 最值得在不同光线下多次造访，黄昏第一次见往往最震撼</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider fade-in">
+  <div class="divider-line"></div><div class="divider-gem"></div>
+  <span class="divider-label">第二站</span>
+  <div class="divider-gem"></div><div class="divider-line"></div>
+</div>
+
+<section class="city-section fade-in">
+  <div class="city-header">
+    <div class="city-number">Ⅱ</div>
+    <div class="city-info">
+      <h2 class="city-name">撒马尔罕</h2>
+      <p class="city-dates-label">3月21日 — 3月26日 · 5夜</p>
+      <p class="city-desc">帖木儿用整个世界的财富铸造的城市，蓝色穹顶倒映在时间的河流里</p>
+    </div>
+  </div>
+  <div class="days-grid">
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">22</div><div class="weekday">周六</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">撒马尔罕 · 精华日</div>
+          <div class="day-theme">比比哈努姆 · 沙赫静达 · 巴扎</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">上午</div>
+          <div class="time-text"><em>比比哈努姆清真寺（Bibi-Khanym）</em> — 帖木儿为爱妻所建，曾是世界最大清真寺之一，规模宏大</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">上午晚些</div>
+          <div class="time-text"><em>西亚布巴扎（Siyob Bazaar）</em> — 清真寺对面的传统市场，买干果、香料、本地馕</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">下午</div>
+          <div class="time-text"><em>沙赫静达墓群（Shah-i-Zinda）</em> — 一条通往天堂的街道，蓝色彩砖密集程度在中亚无出其右，午后斜阳光线最佳</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">傍晚</div>
+          <div class="time-text"><em>雷吉斯坦广场</em>再访，黄金时段摄影</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">23</div><div class="weekday">周日</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">沙赫里萨布兹 一日游</div>
+          <div class="day-theme">帖木儿的出生地 · 包车约2小时</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">全天</div>
+          <div class="time-text">从撒马尔罕包车出发（约80公里，翻山或走隧道约2小时）</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">主要景点</div>
+          <div class="time-text"><em>阿克萨雷宫遗址（Ak-Saray Palace）</em> — 只剩两座巨型门塔，尺度令人窒息，铭文写着"让质疑我们权力者来看我们的建筑"</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">次要景点</div>
+          <div class="time-text"><em>多鲁斯萨达特建筑群</em> — 帖木儿之子的陵墓，据说帖木儿本人最初也打算葬于此；<em>科克-古姆巴兹清真寺</em></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">下午</div>
+          <div class="time-text">返回撒马尔罕</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">24</div><div class="weekday">周一</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">撒马尔罕 · 深度日</div>
+          <div class="day-theme">天文台 · 粟特壁画 · 老城</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">上午</div>
+          <div class="time-text"><em>兀鲁伯天文台（Ulugh Beg Observatory）</em> — 帖木儿之孙的遗迹，中世纪最精密的天文设施之一</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">上午晚些</div>
+          <div class="time-text"><em>阿弗拉西亚布遗址博物馆（Afrasiab Museum）</em> — 7世纪粟特王宫场景壁画，前伊斯兰时代的中亚面貌，与研究兴趣高度契合</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">下午</div>
+          <div class="time-text">老城商业街自由漫步，挑选手工艺品（撒马尔罕的丝绒、苏扎尼刺绣质量集中）</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">傍晚</div>
+          <div class="time-text"><em>雷吉斯坦夜场</em>（如有灯光秀）</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">25</div><div class="weekday">周二</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">撒马尔罕 · 缓冲日</div>
+          <div class="day-theme">补遗 · 发呆 · 或写作</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">随性安排</div>
+          <div class="time-text">补看前几天错过的景点，或在老城咖啡馆发呆写作，按自己节奏来</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">傍晚</div>
+          <div class="time-text">整理行李，准备次日转移布哈拉</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider fade-in">
+  <div class="divider-line"></div><div class="divider-gem"></div>
+  <span class="divider-label">第三站</span>
+  <div class="divider-gem"></div><div class="divider-line"></div>
+</div>
+
+<section class="city-section fade-in">
+  <div class="city-header">
+    <div class="city-number">Ⅲ</div>
+    <div class="city-info">
+      <h2 class="city-name">布哈拉</h2>
+      <p class="city-dates-label">3月26日 — 3月29日 · 3夜</p>
+      <p class="city-desc">圣城与商城，丝路最完整保留的中世纪老城，曾是伊斯兰世界的学术中心</p>
+    </div>
+  </div>
+  <div class="days-grid">
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">26</div><div class="weekday">周三</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">撒马尔罕 → 布哈拉</div>
+          <div class="day-theme">🚄 11:56 高铁 · 14:18 抵达</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">上午</div>
+          <div class="time-text">撒马尔罕最后的巴扎闲逛，买手信</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">下午</div>
+          <div class="time-text">抵达布哈拉，入住，轻松缓冲</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">傍晚</div>
+          <div class="time-text"><em>拉比·豪兹广场（Lyab-i Hauz）</em> — 老城核心水池广场，周围都是茶馆，傍晚气氛极佳；远望<em>卡廖恩宣礼塔</em>夜景</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">27</div><div class="weekday">周四</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">布哈拉 · 精华日</div>
+          <div class="day-theme">宣礼塔 · 要塞 · 古陵</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">上午</div>
+          <div class="time-text"><em>卡廖恩清真寺与宣礼塔建筑群（Kalon）</em> — 12世纪的宣礼塔高47米，成吉思汗据说因此下令保留它</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">上午晚些</div>
+          <div class="time-text"><em>阿尔卡要塞（Ark Fortress）</em> — 历代布哈拉汗国宫城，从早期游牧政权到俄国征服，跨越两千年</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">下午</div>
+          <div class="time-text"><em>博洛豪兹清真寺（Bolo Hauz）</em>；<em>萨曼王朝陵墓（Samanid Mausoleum）</em> — 10世纪砖砌建筑，中亚现存最古老的伊斯兰陵墓之一</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">傍晚</div>
+          <div class="time-text">回拉比·豪兹，找一家传统茶馆喝茶，什么也不做</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">28</div><div class="weekday">周五</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">布哈拉 · 深度日</div>
+          <div class="day-theme">四塔楼 · 苏非圣地 · 手工艺</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">上午</div>
+          <div class="time-text"><em>乔尔米纳尔（Chor Minor）</em> — 四座圆塔的小型门楼，布哈拉最有辨识度的"异端"建筑，19世纪商人所建</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">上午晚些</div>
+          <div class="time-text">老城手工艺品区深度逛（布哈拉的木雕、铜器、细密画质量极高）</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">下午</div>
+          <div class="time-text"><em>纳克西班迪陵墓（Naqshbandi Shrine）</em>（距市区约12公里，需包车）— 苏非纳克西班迪教团的圣地</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">晚上</div>
+          <div class="time-text">整理手信，准备次日返回塔什干</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider fade-in">
+  <div class="divider-line"></div><div class="divider-gem"></div>
+  <span class="divider-label">收尾</span>
+  <div class="divider-gem"></div><div class="divider-line"></div>
+</div>
+
+<section class="city-section fade-in">
+  <div class="city-header">
+    <div class="city-number">Ⅳ</div>
+    <div class="city-info">
+      <h2 class="city-name">塔什干 · 归途</h2>
+      <p class="city-dates-label">3月29日 — 3月31日 · 2夜</p>
+      <p class="city-desc">把节奏放慢，好好吃一顿抓饭，然后回家</p>
+    </div>
+  </div>
+  <div class="days-grid">
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">29</div><div class="weekday">周六</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">布哈拉 → 塔什干</div>
+          <div class="day-theme">🚄 高铁约3.5小时</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">上午</div>
+          <div class="time-text">布哈拉最后的闲逛，乘早班或午班高铁出发</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">傍晚</div>
+          <div class="time-text">抵达塔什干，check in，轻松晚饭</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">30</div><div class="weekday">周日</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">塔什干 · 收尾日</div>
+          <div class="day-theme">补遗 · 购物 · 抓饭</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">上午</div>
+          <div class="time-text">补逛19-20日未去之处，或者就此放空</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">下午</div>
+          <div class="time-text">购物：茶叶、干果、陶器、丝巾</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">晚上</div>
+          <div class="time-text">在塔什干老字号吃一顿正式的抓饭（Plov，乌兹别克斯坦的国民灵魂料理）</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-header">
+        <div class="day-date"><div class="month">三月</div><div class="num">31</div><div class="weekday">周一</div></div>
+        <div class="day-title-wrap">
+          <div class="day-title">回程</div>
+          <div class="day-theme">✈ 22:20 塔什干 → 长沙</div>
+        </div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body"><div class="day-content">
+        <div class="time-block">
+          <div class="time-label">白天</div>
+          <div class="time-text">自由活动，整理行李，最后一杯当地茶</div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">22:20</div>
+          <div class="time-text">塔什干起飞，飞往长沙</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-ornament">✦ ✦ ✦</div>
+  <p class="footer-text">14日 · 4城 · 千年文明</p>
+</footer>
+
+<script>
+  function toggleDay(card) {
+    card.classList.toggle('open');
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
