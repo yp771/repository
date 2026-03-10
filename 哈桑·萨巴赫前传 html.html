@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哈桑·萨巴赫前传 | 正信的召唤者</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8d5a0;
+    --gold-dim: #8a7236;
+    --ink: #1a1612;
+    --parchment: #f5f0e6;
+    --parchment-dark: #e8dcc8;
+    --blue-deep: #1a3a5c;
+    --blue-tile: #2a6496;
+    --red-accent: #8b3a3a;
+    --text: #2c2418;
+    --text-light: #6b5d4d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === HERO === */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(180deg, #0d0b08 0%, #1a1612 40%, #2c2418 100%);
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 600px 400px at 50% 45%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 300px 300px at 30% 60%, rgba(42,100,150,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* geometric pattern overlay */
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 59px, var(--gold) 59px, var(--gold) 60px),
+      repeating-linear-gradient(90deg, transparent, transparent 59px, var(--gold) 59px, var(--gold) 60px);
+    pointer-events: none;
+  }
+
+  .hero-arabic {
+    font-family: 'Noto Naskh Arabic', serif;
+    color: var(--gold);
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    letter-spacing: 0.08em;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.3s forwards;
+    text-align: center;
+    direction: rtl;
+    line-height: 2;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: var(--gold);
+    text-align: center;
+    letter-spacing: 0.15em;
+    margin: 1.5rem 0 0.8rem;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.6s forwards;
+    text-shadow: 0 0 60px rgba(201,168,76,0.15);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.3rem);
+    color: var(--gold-dim);
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.9s forwards;
+  }
+
+  .hero-line {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin: 2rem auto;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.1s forwards;
+  }
+
+  .hero-meta {
+    color: var(--gold-dim);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.3s forwards;
+    text-align: center;
+    line-height: 2;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.8s forwards;
+  }
+  .scroll-hint span {
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 0 auto;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  /* === CONTENT === */
+  .content-wrapper {
+    background: var(--parchment);
+    position: relative;
+  }
+
+  .content-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, var(--ink), var(--parchment));
+    pointer-events: none;
+  }
+
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* === P社剧本介绍 === */
+  .game-intro {
+    background: rgba(26, 58, 92, 0.06);
+    border-left: 3px solid var(--blue-tile);
+    padding: 1.5rem 2rem;
+    margin-bottom: 3rem;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.92rem;
+    line-height: 2;
+    color: var(--text-light);
+  }
+  .game-intro strong {
+    color: var(--blue-deep);
+    font-weight: 600;
+  }
+
+  /* === FOREWORD === */
+  .foreword {
+    font-size: 0.95rem;
+    line-height: 2.2;
+    color: var(--text-light);
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--parchment-dark);
+  }
+
+  /* === CHAPTER HEADERS === */
+  .chapter {
+    margin-bottom: 4rem;
+  }
+
+  .chapter-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-top: 2rem;
+  }
+
+  .chapter-number {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .chapter-title {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.6rem;
+  }
+
+  .chapter-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 1rem;
+  }
+  .chapter-ornament::before,
+  .chapter-ornament::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .chapter-ornament span {
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* === TEXT STYLES === */
+  .chapter p {
+    font-size: 1.05rem;
+    line-height: 2.2;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    text-indent: 2em;
+  }
+
+  .chapter p:first-of-type {
+    text-indent: 0;
+  }
+  .chapter p:first-of-type::first-letter {
+    float: left;
+    font-size: 3.2rem;
+    line-height: 1;
+    font-weight: 900;
+    color: var(--gold-dim);
+    margin: 0.1em 0.15em 0 0;
+  }
+
+  /* highlighted names / terms */
+  .name {
+    color: var(--blue-deep);
+    font-weight: 600;
+  }
+
+  /* dialogue */
+  .dialogue {
+    text-indent: 2em;
+  }
+
+  /* PS note */
+  .ps-note {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    background: rgba(201,168,76,0.08);
+    border-radius: 4px;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0 1.5rem;
+    line-height: 2;
+    text-indent: 0 !important;
+  }
+
+  /* arabic quote in text */
+  .arabic-quote {
+    font-family: 'Noto Naskh Arabic', serif;
+    direction: rtl;
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--gold-dim);
+    padding: 1.5rem 0;
+    line-height: 2;
+    text-indent: 0 !important;
+  }
+
+  /* scene break */
+  .scene-break {
+    text-align: center;
+    margin: 2.5rem 0;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 1em;
+    user-select: none;
+  }
+
+  /* === REFERENCES === */
+  .references {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--parchment-dark);
+  }
+  .references h3 {
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .references ul {
+    list-style: none;
+    font-size: 0.88rem;
+    line-height: 2.2;
+    color: var(--text-light);
+  }
+  .references li {
+    padding-left: 1em;
+    text-indent: -1em;
+    margin-bottom: 0.3rem;
+  }
+  .references li::before {
+    content: '·';
+    margin-right: 0.5em;
+    color: var(--gold);
+  }
+  .references em {
+    font-style: italic;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    background: var(--ink);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--gold-dim);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    line-height: 2;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 600px) {
+    .content { padding: 4rem 1.2rem 3rem; }
+    .chapter p { font-size: 1rem; }
+    .game-intro { padding: 1.2rem 1.5rem; }
+  }
+
+  /* reading progress bar */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--gold);
+    z-index: 999;
+    transition: width 0.1s linear;
+    width: 0%;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-arabic">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+  <h1 class="hero-title">哈桑·萨巴赫前传</h1>
+  <p class="hero-subtitle">正 信 的 召 唤 者</p>
+  <div class="hero-line"></div>
+  <p class="hero-meta">
+    CK3 历史剧场<br>
+    什叶派 · 十二伊玛目 · 伊斯玛仪
+  </p>
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- ========== CONTENT ========== -->
+<main class="content-wrapper">
+<article class="content">
+
+  <!-- P社剧本介绍 -->
+  <div class="game-intro">
+    <strong>【P社原剧本介绍】</strong><br>
+    哈桑·萨巴赫&ensp;16岁&ensp;"正信的召唤者"<br><br>
+    哈桑·萨巴赫出身于一个名不见经传的家庭，但他对伊斯兰教的坚定忠诚和对塞尔柱占领的狂热抵抗将使他走上永远改变历史的道路。<br><br>
+    出身卑微的哈桑注定要在阿拉穆特山堡建立阿萨辛。他将成为传奇，所有人都将畏惧可怕的"山中老人"。
+  </div>
+
+  <!-- 前言 -->
+  <div class="foreword">
+    大家好我是炸鸡~<br><br>
+    我从小玩《刺客信条》，知道了阿萨辛这个组织，后来才发现，它的原型就是哈桑·萨巴赫在历史上创立的刺客团体。CK3里有一个哈桑的剧本，从他十六岁改信伊斯玛仪派开始。不过我更好奇的是，在这之前他经历了什么，是什么让一个库姆的少年走上了那条路，变成了山中老人。<br><br>
+    所以，这期借着游戏里的开局地图和设定，我以哈桑的第一人称视角，写了一篇1066之前的前传小剧场。
+  </div>
+
+  <!-- ===== 第一章 ===== -->
+  <section class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number">壹</div>
+      <h2 class="chapter-title">圣城库姆</h2>
+      <div class="chapter-ornament"><span></span></div>
+    </div>
+
+    <p>我出生于圣城库姆。纯洁无暇的圣女<span class="name">法蒂玛·玛苏玛</span>长眠于此，她从麦地那出发，想去探望被软禁在呼罗珊的哥哥，我们的第八任伊玛目。但她死在了半路上的库姆。</p>
+
+    <p>于是，我们为她建起金顶圣寺，一盏什叶派在大地上最明亮的灯。从我记事起，城里就住满了学者和朝圣者，胡同里随时能听见低声诵经，空气里有一种恒久的庄严，仿佛真主就住在街角。</p>
+
+    <p>七岁那年，妇女们涂上胭脂，街道上飘着烤开心果的香气，阳台上的孩子们把整桶整桶的水泼向路人，高声喊着"愿真主诅咒欧麦尔"。那时我不太清楚欧麦尔是谁，只知道他是我们所有人共同的敌人。先知归真之后，他抢走了阿里的权位。我们痛哭，我们诅咒，我们把他的名字写在鞋底踩着走。</p>
+
+    <p>离开了我们的库姆，四面都是他们的世界。</p>
+
+    <p>逊尼派的土地，欧麦尔继承者们的土地。他们有他们的哈里发，有他们的苏丹，有他们的旗帜，插在每一座城楼的最高处。库姆人知道这一点，就像知道冬日会如期降临。</p>
+  </section>
+
+  <!-- ===== 第二章 ===== -->
+  <section class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number">贰</div>
+      <h2 class="chapter-title">逃亡者之子</h2>
+      <div class="chapter-ornament"><span></span></div>
+    </div>
+
+    <p>我的祖父是也门人，他曾在麦地那见过阿里的追随者，随即给我的父亲也起了阿里之名。</p>
+
+    <p>我的父亲<span class="name">阿里·萨巴赫</span>出生于库法，库法是阿里建都的地方，也是阿里被刺杀的地方。阿里死后，库法人给他的儿子侯赛因写信说，我们在这里等你。你来，我们就跟你走。侯赛因带着家眷上路了。库法人最后没有来。侯赛因死在了卡尔巴拉的荒原上，和他一起死的还有他的兄弟、他的儿子、他的侄子。</p>
+
+    <p>父亲离开库法时，我还没出生。他只提过一次，说库法城里抄了很多什叶派的家。苏丹认为有人在给开罗的间谍传递消息。于是，他从库法一路走到库姆，定居下来。从一个没守住的都城，到了一个没走到的终点。我们什叶派有很多失败者的圣地。</p>
+
+    <p>父亲是穆斯林"顺从"的典范。他连在自己家里念经声音都很轻。</p>
+
+    <p class="dialogue">我问父亲："真主让阿里受了委屈。但为什么四百年过去了，阿里的子子孙孙还在受委屈？"</p>
+
+    <p>父亲沉默了很长时间，拨弄着手上的念珠。最后他说："真主的旨意，不是我们能过问的。"</p>
+  </section>
+
+  <!-- ===== 第三章 ===== -->
+  <section class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number">叁</div>
+      <h2 class="chapter-title">不念阿里的清真寺</h2>
+      <div class="chapter-ornament"><span></span></div>
+    </div>
+
+    <p>十二岁那年，我们搬家去了雷伊城。雷伊是波斯最大的城市之一。</p>
+
+    <p>从库姆向北走三天，穿过盐碱地和骆驼刺，城池的轮廓才从黄土里中浮现。我记得第一次看见雷伊时的感觉：它太大了，大到我站在城门口不敢迈步。波斯人、突厥人、阿拉伯人，所有人挤在同一条街道上。</p>
+
+    <p>到雷伊的第一个主麻日，我跟着父亲去清真寺。</p>
+
+    <p>库姆的主麻我去过许多次，去的次数多了，那些词句已经有了自己的形状，落在心里某个固定的地方。宣讲结束前，伊玛目会在呼图白中报出一长串名字——先知，阿里，法蒂玛，哈桑，侯赛因，往下数，一直数到那位<span class="name">期待中的马赫迪，隐遁的第十二任伊玛目</span>。</p>
+
+    <p>但雷伊清真寺的伊玛目一开口，先念了一个陌生的名字，接着"真主庇佑他统治世间"。</p>
+
+    <p>我当时没有立刻反应过来。后来我才知道，那是阿拔斯的哈里发。</p>
+
+    <div class="ps-note">
+      PS：逊尼派的哈里发，<span class="name">卡伊姆·伊本·卡迪尔</span>。似乎严格来说这里其实应该念尊号……
+    </div>
+
+    <p>接着，伊玛目念了塞尔柱大苏丹<span class="name">阿尔普·阿尔斯兰</span>的名字。</p>
+
+    <p>我侧头看父亲。他的表情没有变化。</p>
+
+    <p>库姆的主麻里没有这两个名字。库姆主麻里有的名字，这里也没有。</p>
+  </section>
+
+  <!-- ===== 第四章 ===== -->
+  <section class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number">肆</div>
+      <h2 class="chapter-title">消失的书</h2>
+      <div class="chapter-ornament"><span></span></div>
+    </div>
+
+    <p>父亲用省了多年的钱，送我去清真寺附属的麦德赛读书。我要在这里用四年学习历法，哲学，星象，阅读各家对《古兰经》的注疏。</p>
+
+    <p>雷伊是座杂乱的城，乱到有一种自由。我的同学里有来自各地的学生，有跟我一样在主麻里念阿里名字的，也有不念的，还有很多人好像说不清到底信什么。大家白天坐在同一张席子上听讲，晚上在同一口锅里吃哈里萨。羊肉和小麦一整天炖得糊烂，出锅再浇上一勺黄油。我们的老师，<span class="name">谢赫·优素福</span>是个胡须花白的波斯人，他说：真主喜欢有人替他费神思量，不管从哪条路想。这种话就绝不可能在库姆听到。</p>
+
+    <p>十五岁那年，城东开了一座新学院，叫做尼扎米耶。</p>
+
+    <p>新学院以宰相<span class="name">尼扎姆·穆勒克</span>之名修建。人人都知道塞尔柱当朝宰相权倾朝野，获封"王国之纲纪"这一前所未有的尊荣。修新学院的钱直接从苏丹的库房出，谢赫们是从巴格达请来的。尼扎米耶比我们的麦德赛新，比麦德赛大，伙食也比麦德赛好，渐渐地，很多同学都转去了那里。</p>
+
+    <p>有一天，我去取一本<span class="name">伊本·西那</span>的注疏，发现它不见了。旁边一个同学说，昨天有人来把几本书收走了。</p>
+
+    <p>谢赫教我读过那本不见了的注疏。他有时讲着讲着会突然停下来，停在一句话的中间，望一眼窗户，然后换一个话题。我注意到，他每次停下来之前，都是刚好讲到什叶派的教义，或者异端那几章。有一天，他干脆起身把窗户关上了。</p>
+
+    <p>入冬前，谢赫被叫去了尼扎米耶学院，宰相要求我们麦德赛的学者"澄清"治学立场。回来之后，他把课堂上剩下的几本书锁进了自己的箱子。然后在一个早晨跟我们说，他身体不好，课先停了。</p>
+
+    <p>他的课再也没有开过。</p>
+  </section>
+
+  <!-- ===== 第五章 ===== -->
+  <section class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number">伍</div>
+      <h2 class="chapter-title">等待</h2>
+      <div class="chapter-ornament"><span></span></div>
+    </div>
+
+    <p>晚上，我睡在十几个人中间，听见清真寺的塔楼上传来宣礼声。总觉得雷伊的宣礼声很吵，令我想念库姆的宁静。我盯着屋顶，直到第二天的晨礼开始响起。</p>
+
+    <p>晨礼过后，我去找麦德赛里资历最老的一位谢赫。他已经在雷伊住了三十年，声望卓著，人们敬畏地称他<span class="name">穆达里斯</span>。我觉得他见过的事情足够多，或许能给我一个不同的答案。</p>
+
+    <p>穆达里斯在给一株枯了半边的无花果树浇水。看到我，他把陶罐放下，在围墙边坐了下来，示意我坐到他旁边。院子里很安静，只有喷泉潺潺的水声。</p>
+
+    <p class="dialogue">我问他："为什么我们要关上窗户，而他们可以把旗帜插满大地？"</p>
+
+    <p>穆达里斯看了我一眼，问："你父亲从哪里来？"</p>
+
+    <p class="dialogue">"从库法来。"</p>
+
+    <p>他点点头，像是明白了什么。他说，"我也在库法住过几年。你父亲当年……去了库姆。这已经是他能做的了。"</p>
+
+    <p class="dialogue">"他是去了库姆。之后呢？"</p>
+
+    <p>穆达里斯从袖子里取出一串念珠。珠子磨损得很厉害，有几颗已经不圆了。他把念珠绕在手指上。松开，又绕上去。</p>
+
+    <p>"活下去。祈祷。等待我们的伊玛目归来。他回来了，就会纠正这一切。"</p>
+
+    <p>院墙外传来一声驴叫，随即是小贩的吆喝声。雷伊的早晨总是这样，焦躁在我心头泛起。</p>
+
+    <p class="dialogue">"那还要等多久？谢赫的书都被收走了……他们拿一座新学院收买我的同学。他们现在就在做事！"</p>
+
+    <p>穆达里斯没有立刻回答。他又转起了念珠，过了很久才说："我在雷伊住了三十年。布韦希人来过，伽色尼人来过。现在是塞尔柱人。每一个都打着真主的旗号，每一个都说自己是最后一个。"</p>
+
+    <p>他把念珠收回袖子里，重新拿起陶罐。"孩子，雷伊换过很多个主人。"</p>
+
+    <p>他没再看我，专心照顾那株树。无花果树枯萎的枝桠还挂着去年的干果，黑的，皱巴巴一团。</p>
+
+    <p>过了一会儿，我发现他真的没有再说话的意思，只好起身告辞。</p>
+
+    <div class="scene-break">◇</div>
+
+    <p>阳光很好，一个塞尔柱人在烤栗子摊前讨价还价。我在清真寺门口的广场上站了一会儿。</p>
+
+    <p>我又想起了侯赛因的故事，听过无数遍了，谢赫也给我们讲过。</p>
+
+    <p>库法人给侯赛因写信，说我们在这里等你。我一直以为那是个背叛的故事。我忽然想，不对。背叛是做了什么。库法人什么都没做。他们写了信，然后留在原地，等侯赛因到了再说，等局势明朗再说。他们没有动，这就是全部的事实。</p>
+
+    <p>等着等着，侯赛因死在了路上。</p>
+
+    <p>穆达里斯说的也许是真的，也许他经历过什么，但那又怎样？他见过的那些事，最后把他变成了一个在院子里浇树的老人。</p>
+  </section>
+
+  <!-- ===== 第六章 ===== -->
+  <section class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number">陆</div>
+      <h2 class="chapter-title">异端</h2>
+      <div class="chapter-ornament"><span></span></div>
+    </div>
+
+    <p>阿米拉来的那个秋天，我十六岁。</p>
+
+    <p>他租住在巴扎尽头的商队驿站里，白天卖香料，晚上点一盏油灯。我第一次注意到他，是因为他的眼睛。雷伊的大多数人在街上走路，都有一种特定的目光：向前看，但其实什么都没在看。他不一样。他坐在摊子后面，像是在晒太阳，但我每次经过，都感觉他好像正好在看别人，或者刚刚看完。他的香料好像没有减少过，也没见谁来补货。他跟街上所有人都能聊两句，替老妇人称藏红花时多抓一撮，跟驿站的突厥马夫聊草料价格，跟犹太银匠聊弯刀的成色。有人问他从哪里来，他说从南边来。再问远不远，他说不近。</p>
+
+    <p>有一次，我坐在他摊位边翻一本借来的注疏。他递过来一只小陶杯，里面是热薄荷茶。我接了。他说了一句："你看书的样子像在吵架。"我愣了一下。那段时间我确实越读越烦躁，每一本注疏我都想跟它争辩，但又说不清楚到底要争什么。他又问我雷伊哪家的馕最好，我说清真寺后街的，他说不对，得是南门外那个跛子烤的，面团里加了一点羊油。</p>
+
+    <p>深秋的一个黄昏，他突然叫住我，问我从哪来。我说从库姆来。</p>
+
+    <p>他点点头。"库姆的主麻好吗？"</p>
+
+    <p class="dialogue">"好。"</p>
+
+    <p>"那雷伊的主麻呢？"</p>
+
+    <p>我心里猛地一跳。不对，他怎么知道我去过库姆主麻的？我没回答。他也没有催我，拿了一小块乳香凑近灯芯。树脂慢慢软化，一缕白烟腾起，苦中带甜的气味散开。</p>
+
+    <p>过了一会儿，他开口：</p>
+
+    <p class="arabic-quote">هُوَ الْأَوَّلُ وَالْآخِرُ وَالظَّاهِرُ وَالْبَاطِنُ وَهُوَ بِكُلِّ شَيْءٍ عَلِيمٌ</p>
+
+    <p>"你在麦德赛读书。谢赫怎么解这一节——'他是前无始，后无终的，是极显著的，极隐微的，他是全知万物的。'？"</p>
+
+    <p>我觉得这是个陷阱，但他激起了我的好胜心。我说了谢赫的解法。</p>
+
+    <p class="dialogue">"还有别的解法吗？"</p>
+
+    <p>"有。伊本·西那说：显明与隐蔽，是说真主向造物显现自身，又永远无法被把握。真主在万物之中，又在万物之外。"</p>
+
+    <p class="dialogue">"哪个对？"</p>
+
+    <p class="dialogue">"各有道理。"</p>
+
+    <p class="dialogue">"那你信哪个？"</p>
+
+    <p>我愣住了，他乘胜追击："真主的话，有没有正确的解法？"</p>
+
+    <p class="dialogue">"有。"</p>
+
+    <p class="dialogue">"谁知道？"</p>
+
+    <p>"谢赫……"我刚说出口就觉得不对，谢赫也是从别人那里学的。"不对……传述链一路往上，回到先知。先知是唯一的解法。"</p>
+
+    <p class="dialogue">"先知归真了。"</p>
+
+    <p>我张了张嘴。谢赫教过的——圣训，一个人传一个人、一直传回先知的话。但传话的人听懂了吗？我又想说公议，学者们坐在一起商量出一个答案。但当年坐在一起商量的那些人，商量出来的结果是让欧麦尔当了哈里发。类比？但类比是拿已知的去推未知的，我连已知的都不太信了。</p>
+
+    <p>油灯的火苗轻轻晃动了一下。</p>
+
+    <p>他又说："你读过很多注疏。那你现在相信的这些——你怎么知道是真的？"</p>
+
+    <p>我没有回答。不是答不上来，而是我突然意识到接下去他要说什么了。库姆来过一个疯癫的传教士，他说经文有"隐义"，说先知留了秘密没有公开。父亲愤怒地骂他骗子。在我的记忆中，他第一次用了这个词："异端"。</p>
+
+    <p>我当即站起身来走了。</p>
+
+    <p>接下来几天，我绕路去麦德赛，不再经过巴扎。但阿米拉总是不经意间从我脑子里跳出来：你怎么知道是真的？我自己回答一遍：传述链可靠，经文自明，学者公议。每一个答案都在理，但没有一个能阻止他下一次冒出来。</p>
+  </section>
+
+  <!-- ===== 第七章 ===== -->
+  <section class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number">柒</div>
+      <h2 class="chapter-title">碎裂的圣女</h2>
+      <div class="chapter-ornament"><span></span></div>
+    </div>
+
+    <p>我回到家，父亲在灯下誊抄文书。屋里弥漫着熟悉的气味，碳墨的烟熏味，掺杂着树脂干燥、微苦的气息。父亲手边搁着几支削好的芦苇笔和一小堆碎屑。他的字很好，波斯语、阿拉伯语都写得工整，靠这个养活了我们。</p>
+
+    <p>我想跟他说阿米拉的事，想问他"你觉得十二伊玛目真的会回来吗"。但他在写字，笔尖刮在纸上沙沙响。这几年来，他老得那么快，背也弯了下来。又或者只是我长高了？才发现他一直是这样弯着。我在门口站了一会儿，去睡了。</p>
+
+    <p>灯烟，树脂，干草，打磨光洁的纸张，玫瑰水的芬芳……不知不觉，我回到了库姆。金灿灿的圣寺穹顶下，墙面由无数碎镜拼成，光斑如星四散。</p>
+
+    <p>有人在低声念着祷词。一个人站在金顶之下。她一袭黑袍，黑纱覆面，外罩青绿丝绸，那是先知后裔的颜色。丝绸上细细织着经文，金线在光里一明一灭。她的手搭在胸前，雪白几近透明，一颗灰尘也不敢落在她身上。我知道她是谁，库姆的圣女，法蒂玛·马苏玛。</p>
+
+    <p>她被称为玛苏玛，意思是"无暇之人"。她的血连着法蒂玛·扎赫拉和先知。她从麦地那走了几千里路，只为见哥哥一面。但她没有走到。真主让她死在了库姆，因为唯有这片土地才配得上她。</p>
+
+    <p>我望着她，几乎跪倒在地。</p>
+
+    <p>突然，壁龛里的光灭了。她的绿丝绸不见了。金线和经文也不见了。黑袍变成了一块灰扑扑的粗布，边角磨出了毛边。在一片昏暗中，马苏玛失去了光彩，瘫倒在地。我赶紧想伸手去扶她，但手指穿过了她的袍角，什么也没有碰到。</p>
+
+    <p>巨大的羞耻和恐惧吞没了我。我猛地睁开眼，心跳得极快，后背全是冷汗。天还没亮，我盯着黑暗中的屋顶，不敢闭眼，也不敢回想刚才那个画面。我在心中一遍遍默念清真言，许久才慢慢平静。</p>
+  </section>
+
+  <!-- ===== 第八章 ===== -->
+  <section class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number">捌</div>
+      <h2 class="chapter-title">开罗有多远</h2>
+      <div class="chapter-ornament"><span></span></div>
+    </div>
+
+    <p>入冬那天，我又走了那条不经过巴扎的路。走到一半，拐进了一条岔道。岔道通向巴扎。</p>
+
+    <p>阿米拉在摊子后面磨一把小铜秤。看见我，他既没有惊讶也没有得意，放下手中的活，给我倒了一杯藏红花水。</p>
+
+    <p>金色慢慢晕开，我吹了吹水面的藏红花丝，说："你上次的问题，我还没想好。"</p>
+
+    <p class="dialogue">"不急。"</p>
+
+    <p>他和我闲扯了几句，说南门卖馕的加了一种新秘方，用的是粗盐，藏红花和蜂蜜。又说有一座我不认识名字的城，人们在清真寺地下挖了一间密室，几个人围坐在一起读经。我问他们读什么经，他说读的是同一部《古兰经》，但读法不一样。</p>
+
+    <p class="dialogue">"怎么不一样？"</p>
+
+    <p>"律法是给所有人看的。但先知说了一些话，不是给所有人听的。"</p>
+
+    <p>我不由得敲了敲滚烫的杯壁，我知道父亲会怎么说，但父亲不在这里。</p>
+
+    <p class="dialogue">"那是给谁听的？"</p>
+
+    <p>"阿里。阿里给了他的后裔。一代一代，从未断过。"</p>
+
+    <p class="dialogue">"我们十二伊玛目派也这么说。"</p>
+
+    <p>"你们说对了一半。第十二位伊玛目隐遁了，要等他回来。但真主会让大地上没有引路人吗？四百年来，哪怕一天？"</p>
+
+    <p>远处传来昏礼的宣礼声。我又开始头痛了。</p>
+
+    <p class="dialogue">"你们的引路人是谁？"</p>
+
+    <p>"伊玛目萨迪克有七个儿子。你们跟了穆萨。我们跟了他的哥哥。"</p>
+
+    <p>我深吸一口气。这人是伊斯玛仪派的。我在麦德赛听同学私底下议论过，据说城里就藏着法蒂玛哈里发的使者，他们来自开罗，专门在年轻人里传教。</p>
+
+    <p>伊斯玛仪，伊玛目萨迪克的长子。我们说，伊斯玛仪死在了父亲之前，所以伊玛目之位传给了弟弟穆萨，接着一直传到第十二任伊玛目。库姆的圣女，法蒂玛·马苏玛就是穆萨的女儿。但如果伊玛目未曾传到穆萨·卡齐姆手上，那她就不再是伊玛目的女儿。那她……</p>
+
+    <p>我突然感到手上热热的，原来是藏红花水洒了出来，顺着我的指缝流淌，划出一道温暖的金色水痕。</p>
+
+    <p>阿米拉的声音好像从很远的地方飘来：</p>
+
+    <p>"世界有两层。你看见苏丹的旗帜了吗？"</p>
+
+    <p>我顺着他的目光看向窗外。下雪了。远处，塞尔柱人的营地燃着火把，橙红的火光把白雪照出一片金色。</p>
+
+    <p>"在它下面还有一层，真主真正的意志，先知真正的遗言——那不是谁都能看得见的。很多人像我一样守着那把钥匙，在开罗，也在各处。"</p>
+
+    <p>一片雪花落在我手背上。一瞬间，我看见它内部晶莹剔透的六边形纹路。就像清真寺的拱顶。每次抬头看，那些层层叠叠的花纹，总觉得它还有更深的一层。再往里，还有一层。</p>
+
+    <p>我往手心里呵了口气，抬头问道："开罗有多远？"</p>
+  </section>
+
+  <!-- ===== REFERENCES ===== -->
+  <div class="references">
+    <h3>参 考 资 料</h3>
+    <ul>
+      <li>[法] 阿敏·马卢夫：《撒马尔罕》，黄思恩、林子涵、彭广恺 译，民主与建设出版社，2017年</li>
+      <li>[土] 奥尔罕·帕慕克：《我的名字叫红》，沈志兴 译，上海人民出版社，2006年</li>
+      <li>金宜久 主编：《伊斯兰教史》，中国社会科学出版社，1990年</li>
+      <li>[日] 海野弘：《アジア・中東の装飾と文様》，パイ インターナショナル，2023年</li>
+      <li>Farhad Daftary, <em>The Assassin Legends: Myths of the Isma'ilis</em>, I.B. Tauris, 1994</li>
+      <li>维基百科相关词条（法蒂玛·玛苏玛、伊斯玛仪派、尼扎米耶学院等）</li>
+    </ul>
+  </div>
+
+</article>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  CK3 历史剧场 · 哈桑·萨巴赫前传<br>
+  原创剧本 · 第一人称历史小说 · 非学术考据
+</footer>
+
+<script>
+  // Reading progress bar
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+  });
+</script>
+</body>
+</html>
